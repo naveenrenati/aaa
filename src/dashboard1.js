@@ -523,7 +523,7 @@ function Dashboard() {
                   <i class="bi bi-terminal-dash"></i> Profile
                   </a>
                 
-                  {/*<a
+                  <a
                     href="#"
                    
                     onClick={toggleadduser}
@@ -531,7 +531,9 @@ function Dashboard() {
                     <i class="bi bi-person-fill-add"></i> Manage User
                   </a>
                   
-  <a href="#" onClick={togglesettings}><i class="bi bi-person-fill-add"></i> Access Settings</a>*/}
+                  <a href="#" onClick={togglesettings}>
+                  <i class="bi bi-person-fill-add"></i> Access Settings
+                  </a>
                  
                 
                   <a href="#"  onClick={toggleUserUploads}>
