@@ -73,10 +73,8 @@ function LoginForm({ onLoginSuccess }) {
           <img src={SCINLABSLOGO} alt="SCINLABS LOGO" />
 
           <div className="a-left-content">
-            <h1>Join Us Now.</h1>
-            <div className="a-btn" onClick={() => navigate('/signup')}>
-              SIGN UP
-            </div>
+            <h1>Welcome Back</h1>
+            
           </div>
         </div>
 
