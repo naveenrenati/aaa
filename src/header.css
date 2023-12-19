@@ -1,0 +1,22 @@
+.d-flex{
+    margin: 0;
+    background-color: #0859C5;
+}
+.btn{
+    width:200px;
+    padding:12px;
+    font-size:25px;
+}
+.admin{
+    background-color: white;
+    text-align: center;
+    font-size: 50px;
+}
+
+img{
+    height: 60px;
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    border-radius: 10px;
+  }

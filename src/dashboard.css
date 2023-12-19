@@ -1,0 +1,435 @@
+*{
+    margin: 0;
+    padding: 0;
+  } 
+  .main{
+    display: flex;
+  }
+  .groups{
+    display: flex;
+    position: fixed;
+  }
+  .group{
+    height: 98vh;
+    position: sticky;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    width: 14rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 15px;
+    margin: 10px;
+    background: #091322;
+    border-radius:10px;
+  }
+  .group a{
+      margin-top: 25px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.903);
+      font-size: 17px;
+  }
+  .group a:hover{
+      scale: 1.2;
+      rotate: 180;
+      border: 1px solid rgba( 255, 255, 255, 0.18 );  
+      padding: 8px;     
+      width: 11rem;
+      margin-left: 10px;  
+      backdrop-filter: blur(5.5px);
+    border-radius:10px;
+    background-color: rgba(255, 255, 255, 0.3); 
+    font-size: 15px;             
+  }
+  .group i{
+    margin-left: 15px;
+    margin-right: 10px;
+}
+.card {
+  margin-top: 50px;
+  margin-left: 450px;
+  margin-bottom: 25px;
+  width: 800px;
+}
+.card h4{
+  text-align: center;
+  color: #7738f6;
+}
+.card label{
+  color: #7738f6;
+  margin-top: 25px;
+}
+.card-body select{
+  margin-top: 25px;
+  color: #7738f6;
+}
+.appint{
+  background-color: #7738f6;
+  color: white;
+  border-radius: 5px;
+  border: #7738f6;
+  padding: 10px;
+  width: 90px;
+  margin-top: 10px;
+  margin-left: 310px;
+}
+.manage{
+  margin-left: 250px;
+}
+.uploadfield{
+  background-color: #7738f6;
+  padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 11px;
+    margin-left: 250px;
+    margin-right: 10px;
+    width: 1213px;
+}
+.uploadfieldinside{
+  display: flex;
+}
+.uploadfieldinside input{
+  margin-top: 15px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+.uploadfieldinside select{
+  margin-top: 15px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+.insidefile{
+  margin-top: 15px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+.uploadfield h4{
+  color: #ebeff2;
+}
+
+.inside{
+  display: flex;
+  justify-content: end;
+  
+}
+.inside .button{
+  padding: 8px;
+  width: 90px;
+  border: 1px solid #b2b2e6;
+  background-color: #b2b2e6;
+  color: #4547de;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+.tabletwo{
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06), 0px 6px 18px rgba(0, 0, 0, 0.06);
+    margin-bottom: 25px;
+   margin-top: 30px;
+   background-color: #7738f6;
+   padding: 15px;
+   border-radius: 1rem;
+   margin-right: 10px;
+   margin-left: 250px;
+}
+.tabletwo table{
+  border-collapse: collapse;
+  border-radius: 1rem;
+  background-color: white;
+  text-align: left;
+  margin-top: 25px;
+ 
+  th{
+    
+    background-color:#d0def2;
+    padding: 0.75rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+  }
+  td{
+    padding: 0.75rem;
+  }
+  tr:hover{
+    color: #7738f6;
+    background-color: #f3f8fe;
+  }
+  .delete{
+    border: 1px solid #ffcdd2;
+    background-color: #ffcdd2;
+    color: #c62828;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 2px;
+  }
+}
+
+.tabletwo .refresh{
+  width: 5vw;
+  border-radius:5px;
+  margin-left: 20px;
+  border: 2px solid #7738f6;
+  background-color: white;
+  color: #7738f6;
+  padding: 5px;
+}
+.tabletwo .previous{
+  width: 5vw;
+  border-radius:5px;
+  border: 2px solid #7738f6;
+  background-color: white;
+  color: #7738f6;
+  padding: 5px;
+}
+.tabletwo .next{
+  width: 5vw;
+  border-radius:5px;
+  margin-left: 20px;
+  border: 2px solid #7738f6;
+  background-color: white;
+  color: #7738f6;
+  padding: 5px;
+}
+
+
+
+  .tableone{
+    border: 1px solid white;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06), 0px 6px 18px rgba(0, 0, 0, 0.06);
+    width: 1200px;
+   margin-top: 30px;
+   background-color: white;
+   padding: 15px;
+   margin-left: 250px;
+  }
+  .tableone h3{
+    background-color: white;
+    color: #7738f6;
+  }
+  .tableone .refresh{
+    width: 5vw;
+    border-radius:5px;
+    margin-left: 800px;
+    border: 2px solid orange;
+    background-color: orange;
+    padding: 5px;
+  }
+  .tableone .previous{
+    width: 5vw;
+    border-radius:5px;
+    border: 2px solid orange;
+    background-color: orange;
+    padding: 5px;
+  }
+  .tableone .next{
+    width: 5vw;
+    border-radius:5px;
+    margin-left: 25px;
+    border: 2px solid orange;
+    background-color: orange;
+    padding: 5px;
+  }
+  .tableone .soursubmit{
+    padding: 10px;
+  border: 1px solid #b2b2e6;
+  background-color: #b2b2e6;
+  color: #4547de;
+  border-radius: 5px;
+  }
+  .tableone p{
+    background-color: white;
+  }
+  .user{
+    width: 75rem;
+    background-color: #7738f6;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: white;
+    margin-top: 11px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-left: 250px;
+  }
+   .user span{
+    font-weight: bold;
+   }
+   .user h2{
+    color: #ebeff2;
+   }
+  .profilecard{
+    margin-top: 60px;
+   }
+   .profilecard hr{
+     color: #7738f6;
+     margin-left: 470px;
+     width: 750px;
+   }
+   .pcard-wrapper {
+    margin-left: 100px;
+    margin-top: 50px;
+    position: relative;
+  }
+  .pcard {
+    position: absolute;
+    margin-left: 250px;
+    width: 300px;
+    height: 320px;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer; 
+  }
+  .details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: 220px;
+    z-index: 1;
+    padding: 10px;
+  }
+  .details h2 {
+    margin: 30px 0;
+    padding: 0;
+    text-align: center;
+  }
+  .details .job-title {
+    font-size: 1rem;
+    line-height: 2.5rem;
+    color: #333;
+    font-weight: 300;
+  }
+  .pcard-wrapperr {
+    margin-left: 450px;
+    position: relative;
+  }
+  .pcard-wrapperrr {
+    margin-left: 800px;   
+    position: relative;
+  }
+  .ratecardconfig{
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06), 0px 6px 18px rgba(0, 0, 0, 0.06);
+    margin-top: 30px;
+    margin-left: 250px;
+    color: #7738f6;
+  }
+  .ratecarddconfig{
+    display: flex;
+  }
+  .rate-card-one{
+    border: 1px solid white;
+   margin-top: 30px;
+   background-color: white;
+   padding: 15px;
+  }
+  .rate-card-one input{
+    width: 400px;
+    margin-top: 30px;
+  }
+  .rate-card-one button{
+    border: 1px solid #b2b2e6;
+    background-color: #b2b2e6;
+    width: 90px;
+    font-size: 30;
+    font-weight: bold;
+    margin-top: 30px;
+    border-radius: 5px;
+    padding: 10px;
+    color: #4547de;
+  }
+  .rate-card-two{
+    border: 1px solid white;
+   margin-top: 30px;
+   background-color: white;
+   padding: 15px;
+  }
+  .rate-card-two select{
+    width: 400px;
+    margin-top: 30px;
+  }
+  .rate-card-three button{
+    background-color: #b2b2e6;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 90px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #b2b2e6;
+    color: #4547de;
+  }
+  .ratecard{
+    margin-left: 250px;
+  }
+  .ratecardd{
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06), 0px 6px 18px rgba(0, 0, 0, 0.06);
+    margin-top: 30px;
+    padding: 15px;
+  }
+  .ratecardd h4{
+    color: #7738f6;
+  }
+  .ratecardd button{
+    border: 1px solid #b2b2e6;
+    background-color: #b2b2e6;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #4547de;
+    font-size: 30;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  .rate-card-four{
+    border: 1px solid white;
+   margin-top: 10px;
+   background-color: white;
+   padding: 15px;
+   display: flex;
+  }
+  .rate-card-four select{
+    width: 400px;
+    margin-left: 25px;
+  }
+  .rate-card-five{
+    border: 1px solid white;
+   background-color: white;
+   padding: 15px;
+   display: flex;
+  }
+  .rate-card-five input{
+    width: 400px;
+    margin-left: 25px;
+  }
+  .rate-card-five button{
+    border: 1px solid #b2b2e6;
+    background-color: #b2b2e6;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30;
+    font-weight: bold;
+    margin-left: 25px;
+    border-radius: 5px;
+    padding: 5px;
+    
+  }
+  .rate-card-four button{
+    border: 1px solid #b2b2e6;
+    background-color: #b2b2e6;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30;
+    font-weight: bold;
+    margin-left: 25px;
+    border-radius: 5px;
+    padding: 5px;
+
+  }
+  .submitted-table{
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06), 0px 6px 18px rgba(0, 0, 0, 0.06);
+    margin-top: 30px;
+    padding: 15px;
+  }
+  .submitted-table h4{
+    color: #7738f6;
+  }
+  .filelink{
+    font-size: 10px;
+  }

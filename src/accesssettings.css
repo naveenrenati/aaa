@@ -1,0 +1,137 @@
+.newuser{
+    
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06), 0px 6px 18px rgba(0, 0, 0, 0.06);
+    margin-bottom: 25px;
+   margin-top: 30px;
+   background-color: #7738f6;
+   padding: 15px;
+   border-radius: 1rem;
+   margin-right: 10px;
+   margin-left: 250px;
+}
+
+.newuser table{
+    border-collapse: collapse;
+  border-radius: 1rem;
+  background-color: white;
+  text-align: left;
+  th{
+    
+    background-color:#d0def2;
+    padding: 0.75rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+  }
+  td{
+    padding: 1rem 2rem;
+  }
+  tr:hover{
+    color: #7738f6;
+    background-color: #f3f8fe;
+  }
+ 
+  .assign{
+    border: 1px solid #c8e6c9;
+    background-color: #c8e6c9;
+    color:  #388e3c;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 2px;
+    width: 50px;
+  }
+  .delete{
+    border: 1px solid #ffcdd2;
+    background-color: #ffcdd2;
+    color: #c62828;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 2px;
+  }
+  select{
+    padding: 3px;
+  }
+}
+.row{
+    background-color: #7738f6;
+    padding: 1rem;
+      border-radius: 1rem;
+      color: white;
+      margin-top: 11px;
+      margin-left: 1px;
+      margin-right:10px;
+      margin-left: 250px;
+}
+.row h3{
+  color: #ebeff2;
+}
+.search{
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  font-size: 1.2rem;
+  width: 100%;
+  margin-left: 5px;
+}
+.search{
+  outline: none;
+}
+.input-wrapper{
+width: 300px;
+padding: 0 15px;
+border: none;
+ 
+  height: 2.5rem;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+.bi-search{
+  color: royalblue;
+}
+.input{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 10px;
+}
+.createbutton{
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+}
+.createuser{
+  padding: 10px;
+  border: 1px solid #b2b2e6;
+  background-color: #b2b2e6;
+  color: #4547de;
+  border-radius: 5px;
+}
+.itemperpage{
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+}
+.itemperpage select{
+  margin-left: 8px;
+  width: 60px;
+}
+.itemperpage .next{
+    padding: 2px;
+    margin-left: 10px;
+    width: 60px;
+    border: 1px solid #b2b2e6;
+  background-color: #b2b2e6;
+  color: #4547de;
+  border-radius: 5px;
+}
+.itemperpage .pre{
+  padding: 3px;
+    margin-left: 10px;
+    width: 80px;
+    border: 1px solid #b2b2e6;
+  background-color: #b2b2e6;
+  color: #4547de;
+  border-radius: 5px;
+}
