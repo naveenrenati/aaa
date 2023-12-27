@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,12 +12,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { API_BASE_URL } from './configure.js';
 import TablePage from './modifyuser.js';
 import Access from "./accesssettings.js";
+import Createnewuser from "./createnewuser.js";
+import CarrierDetails from "./table/carrierdetails.js"
+import Mapping from "./table/clientcarriermapping.js"
+import Signup from "./table/signup.js"
+import UserMapping from "./table/userclientmapping.js"
 
 import CryptoJS from 'crypto-js';
 
 import "./dashboard.css";
- 
-function Dashboard() {
+import Fetch1 from "./table/fetch1.js";
+import Fetch2 from "./table/fetch2.js";
+
+function App() {
   const navigate = useNavigate();
   const [clientId, setClientId] = useState("");
   const [carrier, setCarrier] = useState("");
@@ -41,6 +49,7 @@ function Dashboard() {
   const [destination, setDestination] = useState([]);
   const [chargeCode, setChargeCode] = useState([]);
   const [isDate, setIsDate] = useState([]);
+  const [profileData, setProfileData] = useState(null);
 
   const [parameter, setParameter] = useState("");
   const [description, setDescription] = useState("");
@@ -53,6 +62,9 @@ function Dashboard() {
   const [newParameterName, setNewParameterName] = useState("");
   const [Showadduser,setShowadduser]=useState("");
   const [Showsettings,setShowsettings]=useState("");
+  const [Showcreatenewuser, setShowcreatenewuser] = useState("");
+  const [Shownewtables, setShownewtables] = useState("");
+  const [Showfetcheddata, setShowfetcheddata] = useState("");
 
   const [matrix, setMatrix] = useState(createEmptyMatrix(0, 0));
 
@@ -175,6 +187,9 @@ function Dashboard() {
     setRateCard(false);
     setShowadduser(false);
     setShowsettings(false);
+    setShowcreatenewuser(false);
+    setShownewtables(false);
+    setShowfetcheddata(false);
   };
 
   const toggleUserUploads = () => {
@@ -185,6 +200,9 @@ function Dashboard() {
     setRateCard(false);
     setShowadduser(false);
     setShowsettings(false);
+    setShowcreatenewuser(false);
+    setShownewtables(false);
+    setShowfetcheddata(false);
   };
 
   const toggleUserMapping = () => {
@@ -195,6 +213,9 @@ function Dashboard() {
     setRateCard(false);
     setShowadduser(false);
     setShowsettings(false);
+    setShowcreatenewuser(false);
+    setShownewtables(false);
+    setShowfetcheddata(false);
   };
 
   const toggleRateCardConfig = () => {
@@ -206,7 +227,9 @@ function Dashboard() {
     setRateCard(false);
     setShowadduser(false);
     setShowsettings(false);
-
+    setShowcreatenewuser(false);
+    setShownewtables(false);
+    setShowfetcheddata(false);
   };
   const toggleRateCard = () => {
     setMapping(false);
@@ -216,6 +239,9 @@ function Dashboard() {
     setRateCard(true);
     setShowadduser(false);
     setShowsettings(false);
+    setShowcreatenewuser(false);
+    setShownewtables(false);
+    setShowfetcheddata(false);
   };
 
   const toggleadduser = () => {
@@ -226,6 +252,9 @@ function Dashboard() {
     setRateCard(false);
     setShowadduser(true);
     setShowsettings(false);
+    setShowcreatenewuser(false);
+    setShownewtables(false);
+    setShowfetcheddata(false);
   };
 
   const togglesettings = () => {
@@ -236,6 +265,46 @@ function Dashboard() {
     setRateCard(false);
     setShowadduser(false);
     setShowsettings(true);
+    setShowcreatenewuser(false);
+    setShownewtables(false);
+    setShowfetcheddata(false);
+  }
+
+  const togglecreateuser = () => {
+    setMapping(false);
+    setShowFiles(false);
+    setShowUserProfile(false);
+    setRateCardConfig(false);
+    setRateCard(false);
+    setShowadduser(false);
+    setShowsettings(false);
+    setShowcreatenewuser(true);
+    setShownewtables(false);
+    setShowfetcheddata(false);
+  }
+  const togglenewtables = () =>{
+    setMapping(false);
+    setShowFiles(false);
+    setShowUserProfile(false);
+    setRateCardConfig(false);
+    setRateCard(false);
+    setShowadduser(false);
+    setShowsettings(false);
+    setShowcreatenewuser(false);
+    setShownewtables(true);
+    setShowfetcheddata(false);
+  }
+  const togglefetcheddata = () =>{
+    setMapping(false);
+    setShowFiles(false);
+    setShowUserProfile(false);
+    setRateCardConfig(false);
+    setRateCard(false);
+    setShowadduser(false);
+    setShowsettings(false);
+    setShowcreatenewuser(false);
+    setShownewtables(false);
+    setShowfetcheddata(true);
   }
 
 
@@ -265,6 +334,26 @@ function Dashboard() {
  const secretKey = 'uniqueDashboardKey'; // Use the same key used for encryption in LoginForm.js
  const bytes = CryptoJS.AES.decrypt(decodeURIComponent(emaill), secretKey);
  const email = bytes.toString(CryptoJS.enc.Utf8);
+
+
+ useEffect(() => {
+  const fetchProfileData = async () => {
+    try {
+      // Decrypt the email
+
+      // Fetch profile data from MongoDB Atlas
+      const response = await fetch(`${ API_BASE_URL }/api/getProfileData?email=${email}`);
+      const data = await response.json();
+
+      // Set profile data to state
+      setProfileData(data);
+    } catch (error) {
+      console.error('Error fetching profile data:', error);
+    }
+  };
+
+  fetchProfileData();
+}, [emaill]);
 
 
   const handleDestinationChange = (index, value) => {
@@ -513,218 +602,216 @@ function Dashboard() {
     }
   }, [email]);
 
+
   return (
     <div>
-      <div className="main">
-        <div className="groups">
-          <div className="group">
-           
-                  <a href="#"  onClick={toggleUserProfile}>
-                  <i class="bi bi-terminal-dash"></i> Profile
-                  </a>
-                
-                  <a
-                    href="#"
-                   
-                    onClick={toggleadduser}
-                  >
-                    <i class="bi bi-person-fill-add"></i> Manage User
-                  </a>
-                  
-                  <a href="#" onClick={togglesettings}>
-                  <i class="bi bi-person-fill-add"></i> Access Settings
-                  </a>
-                 
-                
-                  <a href="#"  onClick={toggleUserUploads}>
-                  <i class="bi bi-file-earmark-arrow-up-fill"></i> Uploads
-                  </a>
-               
-                  <a href="#"  onClick={toggleUserMapping}>
-                  <i class="bi bi-diagram-2-fill"></i> Mapping
-                  </a>
-           
-                  <a
-                    href="#"
-                   
-                    onClick={toggleRateCardConfig}
-                  >
-                  <i class="bi bi-house-add-fill"></i> Rate Card Config
-                  </a>
-               
-                  <a href="#"  onClick={toggleRateCard}>
-                  <i class="bi bi-card-list"></i> Rate Card
-                  </a>
-               
-                  <a
-                    href="#"
-                   
-                    onClick={() => navigate("/")}
-                  >
-                    <i class="bi bi-box-arrow-right"></i> Logout
-                  </a>
-                
+      <input type="checkbox" id="nav-toggle" />
+
+      {/* Sidebar */}
+      <section className="sidebar">
+        
+
+        <div className="sidebar-menu">
+         
+            <li>
+              <a href="#" className="active" onClick={toggleUserProfile}>
+                <span><i class="bi bi-person-circle"></i></span>
+                <span>Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={togglecreateuser}>
+                <span><i class="bi bi-person-fill-add"></i></span>
+                <span>Add User</span>
+              </a>
+            </li>
+            <li>
+              <a href="#"  onClick={togglenewtables}>
+                <span><i class="bi bi-terminal-dash"></i></span>
+                <span>Table</span>
+              </a>
+            </li>
+            <li>
+              <a href="#"  onClick={togglefetcheddata}>
+                <span><i class="bi bi-terminal-dash"></i></span>
+                <span>Fetch</span>
+              </a>
+            </li>
+            <li>
+              <a href="#"  onClick={toggleUserUploads}>
+                <span><i class="bi bi-file-earmark-arrow-up-fill"></i></span>
+                <span>Uploads</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={toggleUserMapping}>
+                <span><i class="bi bi-diagram-2-fill"></i> </span>
+                <span>Mapping</span>
+              </a>
+            </li>
+            <li>
+              <a href="#"  onClick={toggleRateCardConfig}>
+                <span><i class="bi bi-house-add-fill"></i></span>
+                <span>Rate Card Config</span>
+              </a>
+            </li>
+            <li>
+              <a href="#"  onClick={toggleRateCard}>
+                <span><i class="bi bi-card-list"></i></span>
+                <span>Rate Card</span>
+              </a>
+            </li>
+            <li>
+              <a href="#"  onClick={() => navigate("/")}>
+                <span><i class="bi bi-box-arrow-right"></i></span>
+                <span>Logout</span>
+              </a>
+            </li>
+
           
+        </div>
+      </section>
+      {/* Sidebar End Here */}
+
+      {/* Main Content */}
+      <div className="main-content">
+        {/* Navbar Header */}
+        <header>
+          <div className="header-title">
+            <h2>
+              <label htmlFor="nav-toggle">
+              <i class="bi bi-list"></i>
+              </label>
+              Scinlabs
+            </h2>
+          </div>
+
+          
+
+          <div className="user-wrapper">
+          <button className="button-40" type="submit"  onClick={() => navigate("/")}><i class="bi bi-box-arrow-right"></i> Logout</button>
+          </div>
+        </header>
+        {/* Navbar Header End Here */}
+
+        {/* Main Content */}
+        <main>
+        {showFiles && (
+          <div>
+          <div className="cards">
+            <div className="card-single">
+            <h4>Upload Freight Data</h4>
+            <div className="uploadfieldinside">
+              <input type="text" className="form-control" placeholder="Give Client ID" value={profileData.uid} readOnly />
+              <select className="form-control" placeholder="Carrier Name" >
+                              <option>choose Carrier</option>
+                              <option>ShipRock</option>
+                              <option>Blue</option>
+              </select>
+              <select className="form-control" placeholder="File Type" >
+                              <option>choose File Type</option>
+                              <option>Choose invoice file</option>
+                              <option>Choose manifest file</option>
+              </select>
+            </div>
+            <div className="insidefile">
+              <input type="file" className="form-control" />
+            </div>
+            <div className="createbutton">
+              <button className="create" > Submit </button>
+            </div>
+            </div>
+          </div>
+          <div className="tabletwo">
+                 
+          <button
+            className="previous"
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          <button className="refresh" onClick={handleRefresh}>
+            Refresh
+          </button>
+
+          <button
+            className="next"
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={getItemsForCurrentPage().length < itemsPerPage}
+          >
+            Next
+          </button>
+          <div className="col">
+            {getItemsForCurrentPage().length > 0 ? (
+              
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Client ID</th>
+                    <th scope="col">Client Email</th>
+                    <th scope="col">Carrier Name</th>
+                    <th scope="col">File Type</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Charge</th>
+                    <th scope="col">date</th>
+
+                    <th scope="col">Uploaded Time</th>
+                    <th scope="col"> Url</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {getItemsForCurrentPage().map((user, index) => (
+                    <tr key={index}>
+                      <td>{user.clientId}</td>
+                      <td>{user.email}</td>
+                      <td>{user.carrier}</td>
+                      <td>{user.name}</td>
+                      <td>{user.source}</td>
+                      <td>{user.destination}</td>
+                      <td>{user.chargeCode}</td>
+                      <td>{user.isDate}</td>
+
+                      <td>{user.uploadDateTime}</td>
+                      <td>
+                        <a
+                          href={user.csvFileUrl}
+                          style={{
+                            backgroundColor: "white",
+                          }}
+                          target="_blank"
+                          download={user.filename}
+                        >
+                          Link
+                        </a>
+                      </td>
+
+                      <td>
+                        <button
+                          className="delete"
+                          onClick={() => handleDelete(user.email)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>No user data available.</p>
+            )}
           </div>
         </div>
-        
-          
-            {showFiles && (
-              <div>
-                {/* <div className="fileupload rounded ">
-                  <h4>Upload User Data and PDF</h4>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Client ID"
-                    value={clientId}
-                    onChange={(e) => setClientId(e.target.value)}
-                  />
-                  <select
-                    className="form-control"
-                    placeholder="Carrier Name"
-                    value={carrier}
-                    onChange={(e) => setCarrier(e.target.value)}
-                  >
-                    <option>Choose Carrier</option>
-                    <option>ShipRock</option>
-                    <option>Blue</option>
-                  </select>
-                  <select
-                    className="form-control"
-                    placeholder="File Type"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  >
-                    <option>Choose File Type</option>
-                    <option>Invoice</option>
-                    <option>Manifest</option>
-                  </select>
-
-                  <input
-                    type="file"
-                    className="form-control"
-                    onChange={handleFileChange}
-                  />
-                  <button onClick={handleSubmit}>Submit</button>
-            </div>*/}
-                <div className="uploadfield ">
-    
-  <div>
-  <h4>Upload User Data and PDF</h4>
-  <div class="uploadfieldinside">
-    <input type="text" className="form-control" placeholder="Give Client ID" value={clientId} onChange={(e) => setClientId(e.target.value)}/>
-    <select className="form-control" placeholder="Carrier Name" value={carrier} onChange={(e) => setCarrier(e.target.value)}>
-                    <option>Select Carrier</option>
-                    <option>ShipRock</option>
-                    <option>Blue</option>
-    </select>
-    <select className="form-control" placeholder="File Type" value={name} onChange={(e) => setName(e.target.value)} >
-                    <option>Select File Type</option>
-                    <option>Invoice</option>
-                    <option>Manifest</option>
-    </select>
-  </div>
-  <div className="insidefile">
-    <input type="file" className="form-control" onChange={handleFileChange} />
-  </div>
-  <div className="inside">
-    <button className="button"  onClick={handleSubmit}>Submit</button>
-  </div>
-  </div>
-  </div>
-  
-  
-                <div className="tabletwo w-auto">
-                 
-                  <button
-                    className="previous"
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
-                    Previous
-                  </button>
-                  <button className="refresh" onClick={handleRefresh}>
-                    Refresh
-                  </button>
-
-                  <button
-                    className="next"
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                    disabled={getItemsForCurrentPage().length < itemsPerPage}
-                  >
-                    Next
-                  </button>
-                  <div className="col">
-                    {getItemsForCurrentPage().length > 0 ? (
-                      
-                      <table>
-                        <thead>
-                          <tr>
-                            <th scope="col">Client ID</th>
-                            <th scope="col">Client Email</th>
-                            <th scope="col">Carrier Name</th>
-                            <th scope="col">File Type</th>
-                            <th scope="col">Source</th>
-                            <th scope="col">Destination</th>
-                            <th scope="col">Charge</th>
-                            <th scope="col">date</th>
-
-                            <th scope="col">Uploaded Time</th>
-                            <th scope="col"> Url</th>
-                            <th scope="col">Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {getItemsForCurrentPage().map((user, index) => (
-                            <tr key={index}>
-                              <td>{user.clientId}</td>
-                              <td>{user.email}</td>
-                              <td>{user.carrier}</td>
-                              <td>{user.name}</td>
-                              <td>{user.source}</td>
-                              <td>{user.destination}</td>
-                              <td>{user.chargeCode}</td>
-                              <td>{user.isDate}</td>
-
-                              <td>{user.uploadDateTime}</td>
-                              <td>
-                                <a
-                                  href={user.csvFileUrl}
-                                  style={{
-                                    backgroundColor: "white",
-                                  }}
-                                  target="_blank"
-                                  download={user.filename}
-                                >
-                                  Link
-                                </a>
-                              </td>
-
-                              <td>
-                                <button
-                                  className="delete"
-                                  onClick={() => handleDelete(user.email)}
-                                >
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    ) : (
-                      <p>No user data available.</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
+        </div>
+        )}
           
 
-            {showMapping && (
+          {showMapping && (
               <div >
-                <div className="tableone rounded ">
+                <div className="tableone">
                   <h3>Mapping data</h3>
 
                   <div className="col">
@@ -812,46 +899,39 @@ function Dashboard() {
                       <p>No user data available.</p>
                     )}
                   </div>
-                  <button className="soursubmit" onClick={handleSubmit}>
+                  <div className="createbutton">
+                  <button className="create" onClick={handleSubmit}>
                     Submit
                   </button>
+                  </div>
                 </div>
               </div>
             )}
 
-            {showUserProfile && (
+
+          {showUserProfile && (
               <>
               <div>
               
                
               <div className="user" >
-              {userDetails ? (
-                <>
-                <h2>Admin details </h2>
-               <br/>
-                    <p>
-                    <span> Email :</span> {userDetails.email}
-                    </p>
-                    <p>
-                    <span>Username :</span> {userDetails.username}
-                    </p>  
-                    <p>
-                    <span> Company : </span> abcd pvt ltd
-                    </p>
-                <p>
-               <span> Location : </span> Hyderabad
-                </p>
-                </>
-                ) : (
-                  <p>Loading user data...</p>
-                )}
-                </div>
+              <div className="profile">
+                    <h2>Profile Information</h2>
+                {profileData ? (
+                       <div>
+                          <p>Email: {profileData.email}</p>
+                          <p>UID: {profileData.uid}</p>
+                          <p>Role: {profileData.role}</p>
+                      </div>
+                       ) : (
+                        <p>Loading...</p>
+                      )}
+                  </div>
                   
+                </div> 
                  <div className="profilecard">
-                  <hr/>
-                
-                  
-    </div>      
+                  <hr/>  
+                </div>      
                       
                       <div className="card ">
                         <div className="card-body">
@@ -887,26 +967,20 @@ function Dashboard() {
                               </select>
             
                             </div>
-
-                            
-
                             <button
                               type="submit"
                               className="appint"
                             >
                               Submit
-                            </button>
-                         
+                            </button>                       
                         </div>
                       </div>
-                      </div>
-                    
-                </>
-                
+                      </div>                   
+                </>              
             )}
 
             {showRateCardConfig && (
-              <div className="ratecardconfig rounded">
+              <div className="ratecardconfig">
                 <div className="ratecarddconfig">
                   <div className="rate-card-one">
                     <h3>Parameters</h3>
@@ -919,7 +993,7 @@ function Dashboard() {
                       onChange={(e) => setParameter(e.target.value)}
                     />
 
-                    <button onClick={addData}>Add</button>
+                    
                   </div>
 
                   <div className="rate-card-two">
@@ -938,6 +1012,9 @@ function Dashboard() {
                       <option>Every additional 500 gms</option>
                       <option>RTO</option>
                     </select>
+                  </div>
+                  <div className="createbutton">
+                  <button onClick={addData} className="create">Add</button>
                   </div>
                 </div>
 
@@ -985,9 +1062,11 @@ function Dashboard() {
                           </option>
                         ))}
                       </select>
+                      <div className="createbutton">
                       <button onClick={handleAddParameter}>
                         Add Parameter
                       </button>
+                      </div>
                     </div>
                     <div className="rate-card-five">
                       <h4>Zones</h4>
@@ -997,10 +1076,12 @@ function Dashboard() {
                         value={newZoneName}
                         onChange={(e) => setNewZoneName(e.target.value)}
                       />
+                      <div className="createbutton">
                       <button onClick={handleAddZone}>Add Zone</button>
+                      </div>
                     </div>
                     <div className="matrix">{renderMatrixInputs()}</div>
-                    <button onClick={handleMatrixSubmit} className="inserttwo">
+                    <button onClick={handleMatrixSubmit} className="create">
                       Submit
                     </button>
                   </div>
@@ -1030,68 +1111,92 @@ function Dashboard() {
                   </div>
                 )}
                 </div>
-
-                
               </>
             )}
-            
+
             {Showadduser &&(
               <>
               <div className="manage">
-      <h2>Add Users</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form   className="form-boxx rounded" onSubmit={handleSubmit1}>
-        <label>
-          First Name:
-          <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange1} required />
-        </label>
-        <br />
-        <label>
-          Last Name:
-          <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange1} required />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input type="email" name="email" value={formData.email} onChange={handleInputChange1} required />
-        </label>
-        <br />
-        <label>
-          Phone Number:
-          <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange1} required />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" name="password" value={formData.password} onChange={handleInputChange1} required />
-        </label>
-        <br />
-        <label>
-          Role:
-          <select name="role" value={formData.role} onChange={handleInputChange1} required>
-            <option value="">Select Role</option>
-            <option value="supporter">Supporter</option>
-            <option value="client">Client</option>
-            <option value="analyst">Analyst</option>
-          </select>
-        </label>
-        <br />
-        <button type="submit">add</button>
-      </form>
-      <TablePage/>
-      
-          </div>
+                <h2>Add Users</h2>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <form   className="form-boxx rounded" onSubmit={handleSubmit1}>
+                  <label>
+                    First Name:
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange1} required />
+                  </label>
+                  <br />
+                  <label>
+                    Last Name:
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange1} required />
+                  </label>
+                  <br />
+                  <label>
+                    Email:
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange1} required />
+                  </label>
+                  <br />
+                  <label>
+                    Phone Number:
+                    <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange1} required />
+                  </label>
+                  <br />
+                  <label>
+                    Password:
+                    <input type="password" name="password" value={formData.password} onChange={handleInputChange1} required />
+                  </label>
+                  <br />
+                  <label>
+                    Role:
+                    <select name="role" value={formData.role} onChange={handleInputChange1} required>
+                      <option value="">Select Role</option>
+                      <option value="supporter">Supporter</option>
+                      <option value="client">Client</option>
+                      <option value="analyst">Analyst</option>
+                    </select>
+                  </label>
+                  <br />
+                  <button type="submit">add</button>
+                </form>
+                <TablePage/>
+                
+                    </div>
               </>
             )}
-          
-          {Showsettings &&(
+
+        {Showsettings &&(
             <Access/>
           )}
+        {Showcreatenewuser &&(
+            <Createnewuser/>
+          )}
+         <div>
+         {Shownewtables && (
+            <>
+              <Signup />
+              <CarrierDetails />
+              <Mapping />
+              <UserMapping />
+            </>
+          )}
+         </div>
+         <div>
+         {Showfetcheddata && (
+            <>
+              <Fetch1/>
+              <Fetch2 />
 
-        
+            </>
+          )}
+         </div>
+
+
+          {/* Add More Components Here */}
+        </main>
+        {/* Main Content End Here */}
       </div>
+      {/* Main Content End Here */}
     </div>
   );
 }
 
-export default Dashboard;
+export default App;

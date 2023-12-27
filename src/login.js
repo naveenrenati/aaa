@@ -11,19 +11,6 @@ import './login.css';
 import './loginpage.js';
 
 
-// Your Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCT6-lNTV5ANpSRdC60jd8Hz5I1pb3FWMs",
-  authDomain: "scinlabs-ba5b5.firebaseapp.com",
-  projectId: "scinlabs-ba5b5",
-  storageBucket: "scinlabs-ba5b5.appspot.com",
-  messagingSenderId: "544472195388",
-  appId: "1:544472195388:web:a57443add1e0e3b591be39",
-  measurementId: "G-VYHVG09PKW"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
 function LoginForm({ onLoginSuccess }) {
   const [formData, setFormData] = useState({

@@ -1,0 +1,35 @@
+/*.createnewuser{
+    
+        background-color: #7738f6;
+        padding: 1rem;
+        border-radius: 1rem;
+        color: white;
+        margin-top: 1%;
+        width: 70rem;     
+}
+h1{
+    color: #7738f6;
+}
+.createnewuser input{
+    margin-top: 1%;
+}
+.createnewuser label{
+    margin-top: 1%;
+}
+.createnewuser select{
+    margin-top: 1%;
+}*/
+
+.createnewuser{
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+    justify-content: space-between;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+}
+.createnewuser h1{
+    color: #7738f6;
+}
+

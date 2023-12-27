@@ -1,0 +1,42 @@
+.userclientmapping{
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+    justify-content: space-between;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+}
+.userclientmapping h2{
+    color: #7738f6;
+}
+
+/*.userclientmapping{
+    padding: 1rem;
+    border-radius: 1rem;
+    color: #7738f6;
+    margin-top: 4%;
+    width:70rem;
+    margin-right:1%;
+    margin-bottom: 4%;
+   border: 1px solid grey;
+}
+.userclientmapping h2{
+    color: #7738f6;
+    text-align: center;
+}
+.userclientmapping input{
+margin-top: 1%;
+}
+.userclientmapping select{
+    margin-top: 1%;
+    }
+.userclientmapping label{
+margin-top: 1%;
+}
+.uselectedcl{
+    margin-left: 250px;
+}
+.uselectedca{
+    margin-left: 250px;
+}*/

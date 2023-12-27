@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './header.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import  './signup.js';
 import './login.js';
 import './dashboard1.js';
 import logo from './SCINLABSLOGO.jpg';

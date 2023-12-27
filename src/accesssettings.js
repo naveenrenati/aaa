@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import './accesssettings.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { API_BASE_URL } from './configure.js';
+
 const Accessstings = () => {
   const [people, setPeople] = useState([]); 
   const [newPerson, setNewPerson] = useState({
@@ -24,7 +24,7 @@ const Accessstings = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    axios.get(`${ API_BASE_URL }/api/people`)
+    axios.get('http://localhost:5000/api/people')
       .then(response => setPeople(response.data))
       .catch(error => console.error('Error fetching people:', error));
   }, []);
@@ -56,7 +56,7 @@ const Accessstings = () => {
     }
   
     // If all validations pass, proceed to create a new person
-    axios.post(`${ API_BASE_URL }/api/people`, newPerson)
+    axios.post('http://localhost:5000/api/people', newPerson)
       .then(response => {
         setPeople([...people, response.data]);
         setNewPerson({
@@ -77,18 +77,18 @@ const Accessstings = () => {
       return;
     }
   
-    axios.put(`${ API_BASE_URL }/api/assign/${personId}/${assignedPersonId}`)
+    axios.put(`http://localhost:5000/api/assign/${personId}/${assignedPersonId}`)
       .then(response => {
         const updatedPeople = people.map(person => (person._id === personId ? response.data : person));
         setPeople(updatedPeople);
         setAssignedPersonId('');
   
         // Fetch details of the assigned person
-        axios.get(`${ API_BASE_URL }/api/person/${assignedPersonId}`)
+        axios.get(`http://localhost:5000/api/person/${assignedPersonId}`)
           .then(response => {
             setAssignedPersonDetails(response.data);
             // Fetch details of people assigned to the selected person
-            axios.get(`${ API_BASE_URL }/api/assigned-people/${assignedPersonId}`)
+            axios.get(`http://localhost:5000/api/assigned-people/${assignedPersonId}`)
               .then(response => setAssignedPeople(response.data))
               .catch(error => console.error('Error fetching assigned people details:', error));
           })
@@ -102,14 +102,14 @@ const Accessstings = () => {
       return;
     }
 
-    axios.delete(`${ API_BASE_URL }/api/people/${personId}`)
+    axios.delete(`http://localhost:5000/api/people/${personId}`)
       .then(() => {
         const updatedPeople = people.filter(person => person._id !== personId);
         setPeople(updatedPeople);
 
         // If the deleted person was assigned to someone, refresh the assigned people details
         if (assignedPersonDetails && assignedPersonDetails.assignedTo === personId) {
-          axios.get(`${ API_BASE_URL }/api/assigned-people/${assignedPersonId}`)
+          axios.get(`http://localhost:5000/api/assigned-people/${assignedPersonId}`)
             .then(response => setAssignedPeople(response.data))
             .catch(error => console.error('Error fetching assigned people details:', error));
         }
