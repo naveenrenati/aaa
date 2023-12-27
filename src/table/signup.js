@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import firebase from 'firebase/compat/app'; // Use 'compat/app' to handle the breaking changes in version 9
 import 'firebase/compat/auth'; // Import the specific Firebase modules you need
 import './signup.css';
-import { API_BASE_URL } from './configure.js';
+import { API_BASE_URL } from '../configure.js';
 
 const Signup = () => {
     const [email, setEmail] = useState('');

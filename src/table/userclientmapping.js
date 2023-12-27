@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './userclientmapping.css';
-import { API_BASE_URL } from './configure.js';
+import { API_BASE_URL } from '../configure.js';
 
 const UserMapping = () => {
   const [clients, setClients] = useState([]);
